@@ -21,6 +21,13 @@ function CartItem({ onContinueShopping }) {
   };
   const handleRemove = (item) => dispatch(removeItem(item.name));
 
+  const handleContinueShopping = (e) => {
+    e.preventDefault();
+    if (onContinueShopping) {
+      onContinueShopping();
+    }
+  };
+
   return (
     <div className="cart-container">
       <h2>Shopping Cart</h2>
@@ -38,7 +45,7 @@ function CartItem({ onContinueShopping }) {
         </div>
       ))}
       <h3>Total: ${calculateTotalAmount()}</h3>
-      <button onClick={onContinueShopping}>Continue Shopping</button>
+      <button onClick={handleContinueShopping}>Continue Shopping</button>
       <button onClick={() => alert('Coming soon!')}>Checkout</button>
     </div>
   );
